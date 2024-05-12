@@ -1,0 +1,33 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  mail:
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+    host: smtp.gmail.com
+    port: 587
+    username: cavidabdullayevv20@gmail.com
+    password: oazhtujbrdkafslv
+    default-encoding: UTF-8
+    protocol: smtp
+currency:
+  api:
+    url:  https://open.er-api.com/v6/latest
+
+
