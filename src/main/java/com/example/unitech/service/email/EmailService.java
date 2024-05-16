@@ -1,4 +1,4 @@
-package com.example.unitech.service;
+package com.example.unitech.service.email;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

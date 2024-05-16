@@ -1,7 +1,7 @@
 package com.example.unitech.exception;
 
 public class AccountActivationException extends RuntimeException {
-    public AccountActivationException(String message, String code){
+    public AccountActivationException(String code,String message){
         super(message);
     }
 }

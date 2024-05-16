@@ -1,4 +1,4 @@
-package com.example.unitech.service.create;
+package com.example.unitech.service.user;
 
 import com.example.unitech.dto.request.create.UserCreateRequest;
 import com.example.unitech.dto.response.create.UserCreateResponse;
@@ -7,7 +7,7 @@ import com.example.unitech.entity.User;
 import com.example.unitech.exception.UserExistsException;
 import com.example.unitech.mapper.UserMapper;
 import com.example.unitech.repository.UserRepository;
-import com.example.unitech.service.EmailService;
+import com.example.unitech.service.email.EmailService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -30,6 +30,7 @@ public class UserCreateService {
     public UserCreateResponse createUser(UserCreateRequest userRequest){
 
         log.info("ActionLog.createUser start");
+
         if(userRepository.findByPin(userRequest.getPin())!=null){
             throw new UserExistsException(HttpStatus.CONFLICT.name(), "User exits already");
         }
@@ -44,13 +45,6 @@ public class UserCreateService {
         return userResponse;
     }
 
-//    public String forgetPassword(String email){
-//        Optional<User> user = userRepository.findByEmailIgnoreCase(email);
-//        if(user.isPresent()){
-//            emailService.forgetPassword(user.get().getEmail(),"",user.get().getPassword());
-//            return "success";
-//        }//error msj
-//        return "Bad request" ;
-//    }
+
 
 }

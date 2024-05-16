@@ -1,12 +1,15 @@
-package com.example.unitech.service;
-import com.example.unitech.dto.request.create.UserCreateRequest;
+package com.example.unitech.service.user;
+import com.example.unitech.constant.UniTech;
+import com.example.unitech.dto.request.login.ForgotPasswordRequest;
 import com.example.unitech.dto.request.login.UserLoginRequest;
 import com.example.unitech.dto.response.login.UserLoginResponse;
 import com.example.unitech.entity.User;
 import com.example.unitech.exception.UserNotFoundException;
 import com.example.unitech.mapper.UserMapper;
 import com.example.unitech.repository.UserRepository;
-import com.example.unitech.service.create.UserCreateService;
+
+import com.example.unitech.service.email.EmailService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,15 +38,15 @@ public class UserLoginService {
    }
 
 
-//       public String forgetPassword(String email){
-//        Optional<User> user = userRepository.findByEmailIgnoreCase(email);
-//        if(user.isPresent()){
-//            emailService.forgetPassword(user.get().getEmail(),"abcg",user.get().getPassword());
-//            return "success";
-//        }//error msj
-//        return "Bad request" ;
-//    }
+   public String forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
+      log.info("Action.log forgotPassword");
+      Optional<User> user = userRepository.findByEmailIgnoreCase(forgotPasswordRequest.getEmail());
+      if (user.isPresent()) {
+         emailService.forgetPassword(user.get().getEmail(), "Check email", user.get().getPassword());
+         return UniTech.CHECK_EMAIL;
+      } else
+         return "User not found";
+   }
 
 
 }
-//mymsjhelper

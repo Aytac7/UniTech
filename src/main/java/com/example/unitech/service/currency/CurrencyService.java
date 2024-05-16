@@ -1,9 +1,9 @@
-package com.example.unitech.service;
+package com.example.unitech.service.currency;
 import com.example.unitech.dto.response.currency.CurrencyResponse;
 import com.example.unitech.entity.Currency;
 import com.example.unitech.exception.IllegalArgumentException;
 import com.example.unitech.repository.CurrencyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.RequiredArgsConstructor;
 
@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-//dependency
-//confing
-////bean
+
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CurrencyService {
@@ -32,9 +32,13 @@ public class CurrencyService {
 
     public CurrencyResponse allCurrencyRates(){
         return restTemplate.getForObject(url,CurrencyResponse.class);
+
     }
 
     public double getSpecificExchange(String sourceCurrency, String targetSource, LocalDate date){
+
+        log.info("ActionLog.getSpecificExchange start");
+
         CurrencyResponse response=restTemplate.getForObject(url,CurrencyResponse.class);
         if(response==null){
             throw new IllegalArgumentException(HttpStatus.BAD_REQUEST.name(),"Invalid data");
@@ -49,23 +53,38 @@ public class CurrencyService {
         currency.setRate(targetRate/sourceRate);
         currency.setUpdatedDate(LocalDateTime.now());
         currencyRepository.save(currency);
+
+        log.info("ActionLog.getSpecificExchange end");
+
         return targetRate/sourceRate;
     }
 
     public double convertAmount(double amount, String source,String target,LocalDate date){
+
+        log.info("ActionLog.convertAmount start");
+
         double exchangeRate=getSpecificExchange(source,target,date);
         if(exchangeRate==0){
             throw new IllegalArgumentException(HttpStatus.BAD_REQUEST.name(), "Invalid pair");
         }
+
+        log.info("ActionLog.convertAmount end");
+
         return amount*exchangeRate;
     }
 
     public void getRecentCurrentData(){
+
+        log.info("ActionLog.getRecentCurrentData start");
+
         LocalDateTime now=LocalDateTime.now().minusMinutes(1);
         List<Currency>reminders=currencyRepository.findByUpdatedDateBefore(now);
         for(Currency currency: reminders){
             currency.setUpdatedDate(LocalDateTime.now());
             currencyRepository.save(currency);
+
+            log.info("ActionLog.getRecentCurrentData end");
+
         }
     }
 

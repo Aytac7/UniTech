@@ -8,8 +8,9 @@ import java.util.Map;
 @Getter
 @Setter
 public class CurrencyResponse {
-    private Long id;
-    private String currencyType;
+
+//    private Long id;
+//    private String currencyType;
     private Map<String, Double> rates;
     //CurrencyType, exchange range
 }

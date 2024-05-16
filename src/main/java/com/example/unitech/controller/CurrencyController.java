@@ -1,7 +1,7 @@
 package com.example.unitech.controller;
 
 import com.example.unitech.dto.response.currency.CurrencyResponse;
-import com.example.unitech.service.CurrencyService;
+import com.example.unitech.service.currency.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

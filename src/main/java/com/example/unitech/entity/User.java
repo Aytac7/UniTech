@@ -22,6 +22,4 @@ public class User {
     String email;
     String username;
     String password;
-    Boolean emailVerified;
-
 }

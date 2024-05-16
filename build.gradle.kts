@@ -32,6 +32,15 @@ dependencies {
 	annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.5.Final")
 	annotationProcessor ("org.projectlombok:lombok-mapstruct-binding:0.2.0")
 
+	// JUnit 5 dependencies
+	testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.2")
+	testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
+	// Mockito dependencies
+	testImplementation ("org.mockito:mockito-core:4.1.0")
+	testImplementation ("org.mockito:mockito-junit-jupiter:4.1.0")
+
+
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

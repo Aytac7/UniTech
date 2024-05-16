@@ -1,5 +1,6 @@
-package com.example.unitech.service;
+package com.example.unitech.service.currency;
 
+import com.example.unitech.service.currency.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -14,7 +15,8 @@ public class RecentCurrencyScheduler {
 
     @Scheduled(cron = "0/30 * * * * *")
     public void recentCurrencyData(){
-        log.info("Inside recentCurrencyData : ");
+        log.info("ActionLog.recentCurrencyData start: ");
         currencyService.getRecentCurrentData();
+        log.info("ActionLog.recentCurrencyData end: ");
     }
 }
