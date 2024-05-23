@@ -15,7 +15,7 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
 
     @Query("select new com.example.unitech.wrapper.AccountWrapper(a.id,a.accountNumber,a.status,a.balance)" +
-            " from Account a where a.fkUserId=:userId and a.status='A'")
+            " from Account a where a.fkUserId=:userId and a.status='ACTIVE'")
     List<AccountWrapper> allActiveAccountByUserId(Long userId);
 
     Account findByAccountNumber(Long accountNumber);
