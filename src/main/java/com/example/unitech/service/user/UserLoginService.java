@@ -40,7 +40,7 @@ public class UserLoginService {
 
    public String forgotPassword(ForgotPasswordRequest forgotPasswordRequest) throws MessagingException {
       log.info("Action.log forgotPassword");
-      Optional<User> user = userRepository.findByEmailIgnoreCase(forgotPasswordRequest.getEmail());
+      Optional<User> user = userRepository.findByEmailIgnoreCaseAndPin(forgotPasswordRequest.getEmail(),forgotPasswordRequest.getPin());
       if (user.isPresent()) {
          emailService.forgetPassword(user.get().getEmail(), "Check email", user.get().getPassword());
          return UniTech.CHECK_EMAIL;
