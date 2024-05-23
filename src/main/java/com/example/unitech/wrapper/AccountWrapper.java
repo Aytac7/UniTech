@@ -1,5 +1,5 @@
 package com.example.unitech.wrapper;
-
+import com.example.unitech.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class AccountWrapper {
         private Long id;
         private Long accountNumber;
-        private String status;
+        private Status status;
         private BigDecimal balance;
 
 }
