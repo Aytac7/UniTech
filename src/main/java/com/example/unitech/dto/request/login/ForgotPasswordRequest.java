@@ -11,5 +11,7 @@ import lombok.*;
 public class ForgotPasswordRequest {
 
     private String email;
+    private String pin;
+    
 
 }
