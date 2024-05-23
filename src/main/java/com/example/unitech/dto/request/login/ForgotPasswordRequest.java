@@ -1,12 +1,12 @@
 package com.example.unitech.dto.request.login;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class ForgotPasswordRequest {
 
