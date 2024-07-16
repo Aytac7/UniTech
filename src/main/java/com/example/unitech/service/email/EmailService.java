@@ -19,7 +19,7 @@ public class EmailService {
             message.setText(text);
             message.setSubject(subject);
             message.setTo(email);
-            message.setFrom("cavidabdullayevv20@gmail.com");
+            message.setFrom("");
             mailSender.send(message);
             System.out.println("end");
     }
